@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_RegistrationLayout.cshtml";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: Gainsboro;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    center {
+        margin-top: 50px;
+    }
+
+    form {
+        background-color: White;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        box-sizing: border-box;
+        border: 1px solid LightGray;
+        border-radius: 4px;
+    }
+
+    input[type="submit"] {
+        width: auto;
+        padding: 10px 20px;
+        background-color: MediumSeaGreen;
+        color: White;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type="submit"]:hover {
+            background-color: SeaGreen;
+        }
+
+    .text-danger {
+        color: DarkRed;
+    }
+</style>
+
+<center>
+    <form action="" method="post">
+        <table>
+            <tr>
+                <td>Employee Name:</td>
+                <td><input type="text" name="Name" class="form-control" value="@(Model == null? "":Model.Name)" placeholder="Enter Your Name" /></td>
+                <td><span class="text-danger"><i>@Html.ValidationMessage("Name")</i></span></td>
+            </tr>
+            <tr>
+                <td>Employee Username:</td>
+                <td><input type="text" name="Username" class="form-control" value="@(Model == null? "":Model.Username)" placeholder="Enter Username" /></td>
+                <td><span class="text-danger"><i>@Html.ValidationMessage("Username")</i></span></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="Password" class="form-control" value="@(Model == null? "":Model.Password)" placeholder="Enter Password" /></td>
+                <td><span class="text-danger"><i>@Html.ValidationMessage("Password")</i></span></td>
+            </tr>
+            <tr>
+                <td>Employee's Phone Number:</td>
+                <td><input type="text" name="Phone" class="form-control" value="@(Model == null? "":Model.Phone)" placeholder="Enter Phone Number" /></td>
+                <td><span class="text-danger"><i>@Html.ValidationMessage("Phone")</i></span></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="email" name="Email" class="form-control" value="@(Model == null? "":Model.Email)" placeholder="Enter Email Address" /></td>
+                <td><span class="text-danger"><i>@Html.ValidationMessage("Email")</i></span></td>
+            </tr>
+            <tr>
+                <td>Employee Address:</td>
+                <td><input type="text" name="Address" class="form-control" value="@(Model == null? "":Model.Address)" placeholder="Enter Address" /></td>
+                <td><span class="text-danger"><i>@Html.ValidationMessage("Address")</i></span></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" name="Role" value="employee" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" name="Status" value="Available" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="right"><input type="submit" name="submit" class="btn btn-success" value="Register" /></td>
+            </tr>
+        </table>
+    </form>
+</center>

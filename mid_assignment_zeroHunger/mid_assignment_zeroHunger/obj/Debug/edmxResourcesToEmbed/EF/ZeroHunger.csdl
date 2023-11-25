@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ZeroHungerDBV2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Assignment">
+    <Key>
+      <PropertyRef Name="AssignmentID" />
+    </Key>
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RequestID" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Request" Relationship="Self.FK_Assignments_Requests" FromRole="Assignments" ToRole="Requests" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Assignments_Users" FromRole="Assignments" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="DistributionRecord">
+    <Key>
+      <PropertyRef Name="RecordID" />
+    </Key>
+    <Property Name="RecordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RequestID" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="DistributionTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Request" Relationship="Self.FK_DistributionRecords_Requests" FromRole="DistributionRecords" ToRole="Requests" />
+    <NavigationProperty Name="User" Relationship="Self.FK_DistributionRecords_Users" FromRole="DistributionRecords" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="RequestID" />
+    </Key>
+    <Property Name="RequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RestaurantID" Type="Int32" Nullable="false" />
+    <Property Name="RequestTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MaxPreservationTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Assignments" Relationship="Self.FK_Assignments_Requests" FromRole="Requests" ToRole="Assignments" />
+    <NavigationProperty Name="DistributionRecords" Relationship="Self.FK_DistributionRecords_Requests" FromRole="Requests" ToRole="DistributionRecords" />
+    <NavigationProperty Name="Restaurant" Relationship="Self.FK_Requests_Restaurants" FromRole="Requests" ToRole="Restaurants" />
+    <Property Name="FoodDetails" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Restaurant">
+    <Key>
+      <PropertyRef Name="RestaurantID" />
+    </Key>
+    <Property Name="RestaurantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RestaurantName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RestaurantLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RestaurantContactPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RestaurantContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RestaurantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RestaurantOwnerID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Restaurants" FromRole="Restaurants" ToRole="Requests" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Restaurants_Users" FromRole="Restaurants" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Assignments" Relationship="Self.FK_Assignments_Users" FromRole="Users" ToRole="Assignments" />
+    <NavigationProperty Name="DistributionRecords" Relationship="Self.FK_DistributionRecords_Users" FromRole="Users" ToRole="DistributionRecords" />
+    <NavigationProperty Name="Restaurants" Relationship="Self.FK_Restaurants_Users" FromRole="Users" ToRole="Restaurants" />
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Assignments_Requests">
+    <End Role="Requests" Type="Self.Request" Multiplicity="1" />
+    <End Role="Assignments" Type="Self.Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requests">
+        <PropertyRef Name="RequestID" />
+      </Principal>
+      <Dependent Role="Assignments">
+        <PropertyRef Name="RequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Assignments_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Assignments" Type="Self.Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Assignments">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DistributionRecords_Requests">
+    <End Role="Requests" Type="Self.Request" Multiplicity="1" />
+    <End Role="DistributionRecords" Type="Self.DistributionRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requests">
+        <PropertyRef Name="RequestID" />
+      </Principal>
+      <Dependent Role="DistributionRecords">
+        <PropertyRef Name="RequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DistributionRecords_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="DistributionRecords" Type="Self.DistributionRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DistributionRecords">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_Restaurants">
+    <End Role="Restaurants" Type="Self.Restaurant" Multiplicity="1" />
+    <End Role="Requests" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurants">
+        <PropertyRef Name="RestaurantID" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="RestaurantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Restaurants_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Restaurants" Type="Self.Restaurant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Restaurants">
+        <PropertyRef Name="RestaurantOwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ZeroHungerDBV2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Assignments" EntityType="Self.Assignment" />
+    <EntitySet Name="DistributionRecords" EntityType="Self.DistributionRecord" />
+    <EntitySet Name="Requests" EntityType="Self.Request" />
+    <EntitySet Name="Restaurants" EntityType="Self.Restaurant" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Assignments_Requests" Association="Self.FK_Assignments_Requests">
+      <End Role="Requests" EntitySet="Requests" />
+      <End Role="Assignments" EntitySet="Assignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Assignments_Users" Association="Self.FK_Assignments_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Assignments" EntitySet="Assignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DistributionRecords_Requests" Association="Self.FK_DistributionRecords_Requests">
+      <End Role="Requests" EntitySet="Requests" />
+      <End Role="DistributionRecords" EntitySet="DistributionRecords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DistributionRecords_Users" Association="Self.FK_DistributionRecords_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="DistributionRecords" EntitySet="DistributionRecords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_Restaurants" Association="Self.FK_Requests_Restaurants">
+      <End Role="Restaurants" EntitySet="Restaurants" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Restaurants_Users" Association="Self.FK_Restaurants_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Restaurants" EntitySet="Restaurants" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

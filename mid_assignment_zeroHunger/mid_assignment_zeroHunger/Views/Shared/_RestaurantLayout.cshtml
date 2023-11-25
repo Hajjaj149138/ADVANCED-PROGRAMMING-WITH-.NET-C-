@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_InnerLayout</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <center>
+        <div class="container">
+            <a class="btn btn-primary" href="/Restaurant/Dashboard">Home</a>
+            <a class="btn btn-primary" href="/Restaurant/Createnewrequest">Add New Request</a>
+            <a class="btn btn-primary" href="/Restaurant/PendingRequest">Pending Requests</a>
+            <a class="btn btn-primary" href="/Restaurant/DonateHistory">History</a>
+            <a class="btn btn-danger" href="/Registration/Logout">Logout</a>
+
+        </div>
+    </center>
+    <div>
+        @RenderBody()
+    </div>
+    <div>
+       
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

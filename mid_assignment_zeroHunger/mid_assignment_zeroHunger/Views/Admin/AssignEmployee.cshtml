@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "AssignEmployee";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>AssignEmployee</h2>
+
+<label>Restaurant Name : </label> @Model.Restaurant.RestaurantName
+<br />
+<label>Max Preservation Time : </label> @Model.MaxPreservationTime
+<br />
+<label>Location : </label> @Model.Restaurant.RestaurantLocation
+<br />
+
+<form action="" method="post">
+
+    <input type="hidden" name="RequestID" class="form-control" value="@Model.RequestID" />
+
+    <select class="form-control" name="EmployeeID">
+        <option disabled selected>---Select---</option>
+        @foreach (var e in ViewBag.Employees)
+        {
+            <option value="@e.ID">@e.Name</option>
+        }
+    </select>
+    <input type="hidden" name="AssignmentTime" class="form-control" value="@DateTime.Now" />
+    <input type="hidden" name="Status" class="form-control" value="Assigned" />
+
+    <input type="submit" value="Assign" class="btn btn-warning" />
+</form>

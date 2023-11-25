@@ -1,0 +1,73 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_InnerLayout</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: LightGray;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        div {
+            text-align: center;
+            padding: 20px;
+        }
+
+        a.btn {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: White;
+            border-radius: 5px;
+        }
+
+        a.btn-primary {
+            background-color: DodgerBlue;
+            border: 1px solid DodgerBlue;
+        }
+
+            a.btn-primary:hover {
+                background-color: RoyalBlue;
+                border: 1px solid RoyalBlue;
+            }
+
+        a.btn-success {
+            background-color: LimeGreen;
+            border: 1px solid LimeGreen;
+        }
+
+            a.btn-success:hover {
+                background-color: ForestGreen;
+                border: 1px solid ForestGreen;
+            }
+    </style>
+</head>
+<body>
+    <div>
+        <a class="btn btn-primary" href="/Registration/login">Login</a>
+        <a class="btn btn-primary" href="/Registration/SignUP">Employee Registration</a>
+        <a class="btn btn-success" href="/Registration/SignUPasdonor">Restaurant's Owner Registration</a>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

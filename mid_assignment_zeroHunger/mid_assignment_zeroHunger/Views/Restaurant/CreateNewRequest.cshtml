@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "CreateNewRequest";
+    Layout = "~/Views/Shared/_RestaurantLayout.cshtml";
+}
+<style>
+    body {
+        background-color: lightgray;
+    }
+
+    center {
+        margin-top: 50px;
+    }
+
+    h1 {
+        color: darkblue;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: green;
+    }
+
+    input[type="datetime-local"],
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: mediumseagreen;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        input[type="submit"]:hover {
+            background-color: darkgreen;
+        }
+
+    .text-danger i {
+        color: red;
+    }
+</style>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<center>
+    <h1>Add New Request</h1>
+
+    <form action="" method="post">
+
+        <input type="hidden" name="RestaurantID" class="form-control" value="@Session["restaurantid"]" />
+        <input type="hidden" name="RequestTime" class="form-control" value="@DateTime.Now" />
+
+        <label>Maximum Preservation Duration:</label>
+        <input type="datetime-local" name="MaxPreservationTime" value="@DateTime.Now" />
+        <span class="text-danger"><i>@Html.ValidationMessage("MaxPreservationTime")</i></span><br />
+
+        <input type="hidden" name="Status" class="form-control" value="Requested" />
+        <label>Comments or Details:</label>
+        <input type="text" name="FoodDetails" class="form-control" />
+        <input type="submit" name="submit" class="btn btn-success" value="Add" />
+    </form>
+</center>

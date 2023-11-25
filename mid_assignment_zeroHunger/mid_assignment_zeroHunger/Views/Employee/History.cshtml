@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: gainsboro;
+    }
+
+    tr:hover {
+        background-color: whitesmoke;
+    }
+</style>
+
+<h2>History</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Restaurant Name</th>
+        <th>Location</th>
+        <th>Status</th>
+        <th>Food Details</th>
+        <th>Distributed at</th>
+    </tr>
+    @foreach (var dr in Model)
+    {
+        <tr text-align: center;>
+            <td>@dr.Request.Restaurant.RestaurantName</td>
+            <td>@dr.Request.Restaurant.RestaurantLocation</td>
+            <td>@dr.Status</td>
+            <td>@dr.Request.FoodDetails</td>
+            <td>@dr.DistributionTime</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,41 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_InnerLayout</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <center>
+        <div class="container">
+            <a class="btn btn-primary" href="/Admin/Dashboard">Home</a>
+            <a class="btn btn-primary" href="/Admin/showallRequest">Request List</a>
+            <a class="btn btn-primary" href="/Admin/showallassignments">Show All Tasks</a>
+            <a class="btn btn-primary" href="/Admin/showallemployeeS">Employees</a>
+            <a class="btn btn-primary" href="/Admin/showallrestaurantS">Restaurant List</a>
+
+            <a class="btn btn-primary" href="/Admin/distibutionRecord">Records/ History</a>
+            <a class="btn btn-danger" href="/Registration/Logout">Logout</a>
+
+
+
+        </div>
+        <div>
+            @RenderBody()
+        </div>
+        <div>
+
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </center>
+</body>
+</html>

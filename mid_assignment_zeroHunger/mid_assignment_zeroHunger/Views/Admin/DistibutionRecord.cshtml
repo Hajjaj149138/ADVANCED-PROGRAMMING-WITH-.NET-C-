@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "DistibutionRecord";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h1>DistibutionRecord</h1> <br />
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>Request ID</th>
+        <th>Restaurant Name</th>
+        <th>Status </th>
+        <th>Distibuted by</th>
+        <th>Action</th>
+
+    </tr>
+    @foreach (var dr in Model)
+    {
+        <tr text-align: center;>
+            <td>@dr.Request.RequestID</td>
+            <td>@dr.Request.Restaurant.RestaurantName</td>
+            <td>@dr.Status</td>
+            <td>@dr.User.Name</td>
+            <td> <a href="/Admin/recorddetails/@dr.RecordID" class="btn btn-primary">Details</a> </td>
+
+
+        </tr>
+    }
+</table>

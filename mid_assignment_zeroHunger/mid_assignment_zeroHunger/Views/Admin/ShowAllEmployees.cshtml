@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "ShowAllEmployees";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h1>Employee List</h1> <br />
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Contact Number</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Status</th>
+
+    </tr>
+    @foreach (var us in Model)
+    {
+        <tr text-align: center;>
+            <td>@us.ID</td>
+            <td>@us.Name</td>
+            <td>@us.Phone</td>
+            <td>@us.Email</td>
+            <td>@us.Address</td>
+            <td>@us.Status</td>
+
+
+
+        </tr>
+    }
+</table>

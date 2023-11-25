@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "RecordDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    body {
+        background-color: lightgray;
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        color: darkblue;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 10px;
+        color: green;
+    }
+</style>
+
+
+<br />
+<br />
+
+<h1>RestaurantDetails</h1>
+<ul>
+    <li>
+        Restaurant ID :
+        @Model.Request.Restaurant.RestaurantID
+    </li>
+    <li>
+        Restaurant Name:
+        @Model.Request.Restaurant.RestaurantName
+    </li>
+    <li>
+        Restaurant Location :
+        @Model.Request.Restaurant.RestaurantLocation
+    </li>
+    <li>
+        Contact Person :
+        @Model.Request.Restaurant.RestaurantContactPerson
+    </li>
+    <li>
+        Contact Number :
+        @Model.Request.Restaurant.RestaurantContactNumber
+    </li>
+    <li>
+        Email Address :
+        @Model.Request.Restaurant.RestaurantEmail
+    </li>
+    <li>
+        Food Details :
+        @Model.Request.FoodDetails
+    </li>
+</ul>
+
+<br />
+<br />
+
+<h1>Employee Details</h1>
+<ul>
+    <li>
+        Employee ID :
+        @Model.EmployeeID
+    </li>
+    <li>
+        Distributed By :
+        @Model.User.Name
+    </li>
+    <li>
+        Contact Number :
+        @Model.User.Phone
+    </li>
+    <li>
+        Email Address :
+        @Model.User.Email
+    </li>
+</ul>
+
+
+<br />
+<br />
+
+<h1>TimeLine</h1>
+<ul>
+    <li>
+        Requested At :
+        @Model.Request.RequestTime
+    </li>
+    <li>
+        Maximum Preservation Time Till :
+        @Model.Request.MaxPreservationTime
+    </li>
+    <li>
+        Distributed At :
+        @Model.DistributionTime
+    </li>
+</ul>

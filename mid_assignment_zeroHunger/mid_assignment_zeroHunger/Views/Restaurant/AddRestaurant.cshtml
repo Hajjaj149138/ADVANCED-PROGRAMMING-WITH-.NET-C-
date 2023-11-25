@@ -1,0 +1,72 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        body {
+            background-color: aliceblue;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: mintcream;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: mediumseagreen;
+            color: white;
+            cursor: pointer;
+        }
+
+            input[type="submit"]:hover {
+                background-color: darkseagreen;
+            }
+
+        .instructions {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="instructions">
+        <h1>Add Your Restaurant Information</h1>
+    </div>
+
+    <form action="" method="post">
+        <input type="text" name="RestaurantName" class="form-control" placeholder="Restaurant Name" /> <br />
+        <input type="text" name="RestaurantLocation" class="form-control" placeholder="Location" />  <br />
+        <input type="text" name="RestaurantContactPerson" class="form-control" placeholder="Contact Person" />  <br />
+        <input type="text" name="RestaurantContactNumber" class="form-control" placeholder="Contact Number" />  <br />
+        <input type="email" name="RestaurantEmail" class="form-control" placeholder="Email Address" />  <br />
+        <input type="hidden" name="RestaurantOwnerID" value="@Session["id"]" />  <br />
+
+        <input type="submit" name="submit" class="btn btn-success" value="Add" />
+    </form>
+
+</body>
+</html>

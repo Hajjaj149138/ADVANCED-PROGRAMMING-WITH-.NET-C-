@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_InnerLayout</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: LightGray;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: DarkSlateGray;
+            padding: 10px;
+            text-align: center;
+        }
+
+            .container a {
+                margin: 0 10px;
+                text-decoration: none;
+                color: White;
+                padding: 8px 16px;
+                border-radius: 4px;
+                transition: background-color 0.3s;
+            }
+
+                .container a:hover {
+                    background-color: DimGray;
+                }
+
+                .container a.btn-danger {
+                    background-color: IndianRed;
+                }
+
+                    .container a.btn-danger:hover {
+                        background-color: DarkRed;
+                    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="btn btn-primary" href="/Employee/Dashboard">Home</a>
+        <a class="btn btn-primary" href="/Employee/Assignments">Task</a>
+        <a class="btn btn-primary" href="/Employee/History">History</a>
+        <a class="btn btn-danger" href="/Registration/Logout">Logout</a>
+    </div>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
